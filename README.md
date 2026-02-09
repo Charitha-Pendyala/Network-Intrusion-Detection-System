@@ -66,13 +66,21 @@ A sample CSV file is provided for testing the application.
 Network-Intrusion-Detection-System/
 
   ├── app.py # Streamlit dashboard
+  
   ├── NIDS_training_notebook.ipynb # Model training (Google Colab)
+  
   ├── rf_model.pkl # Trained Random Forest model
+  
   ├── iso_model.pkl # Trained Isolation Forest model
+  
   ├── scaler.pkl # Feature scaler
+  
   ├── feature_columns.pkl # Saved feature schema
+
   ├── nsl_kdd_upload.csv # Sample input CSV
+  
   ├── requirements.txt # Dependencies
+  
   └── README.md
 
 
