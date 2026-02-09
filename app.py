@@ -156,23 +156,41 @@ if uploaded_file:
 
     st.bar_chart(chart_df.set_index("Alert Level"))
 
-    # ------------------ Pie Chart (Small & Centered) ------------------
+    # ------------------ Donut Chart (Clean & Compact) ------------------
     st.markdown('<div class="section">🧠 Severity Breakdown</div>', unsafe_allow_html=True)
-
+    
     col_left, col_center, col_right = st.columns([1, 2, 1])
-
+    
     with col_center:
-        fig, ax = plt.subplots(figsize=(3.2, 3.2))  # SMALL size
-        ax.pie(
+        fig, ax = plt.subplots(figsize=(3, 3))
+    
+        wedges, texts, autotexts = ax.pie(
             chart_df["Count"],
-            labels=chart_df["Alert Level"],
-            autopct="%1.1f%%",
+            autopct="%1.0f%%",
             startangle=90,
-            textprops={"fontsize": 10}
+            pctdistance=0.75,
+            textprops={"fontsize": 9}
         )
+    
+        # Donut hole
+        centre_circle = plt.Circle((0, 0), 0.55, fc="white")
+        ax.add_artist(centre_circle)
+    
         ax.axis("equal")
+    
+        # Legend outside (clean)
+        ax.legend(
+            wedges,
+            chart_df["Alert Level"],
+            title="Alert Level",
+            loc="center left",
+            bbox_to_anchor=(1.05, 0.5),
+            fontsize=9
+        )
+    
         plt.tight_layout()
         st.pyplot(fig, use_container_width=False)
+    
 
 
     # ------------------ Filter ------------------
